@@ -16,3 +16,20 @@ interface Teacher {
   };
 
   console.log(teacher3);
+
+  // Directors interface that extends Teacher
+  interface Directors extends Teacher {
+	numberOfReports: number;
+  }
+
+  // Creating an object for Director
+  const director1: Directors = {
+	firstName: 'John',
+	lastName: 'Doe',
+	location: 'London',
+	fullTimeEmployee: true,
+	numberOfReports: 17, // Additional property specific to Directors
+  };
+
+  // Logging the director1 object
+  console.log(director1);
