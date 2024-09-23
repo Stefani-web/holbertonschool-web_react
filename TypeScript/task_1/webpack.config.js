@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
+  mode: 'development', // ajout d'option pour resolution des avertissements
   entry: "./js/main.ts",
   devtool: "inline-source-map",
   module: {
