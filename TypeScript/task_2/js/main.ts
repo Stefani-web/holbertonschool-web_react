@@ -1,50 +1,50 @@
-interface Teacher {
-	firstName: string;
-	lastName: string;
-	fullTimeEmployee: boolean;
-	yearsOfExperience?: number;
-	location: string;
-	[propName: string]: any; // Allows additional properties
-  }
+interface DirectorInterface {
+    workFromHome(): string;
+    getCoffeeBreak(): string;
+    workDirectorTasks(): string;
+}
 
-  interface Directors extends Teacher {
-	numberOfReports: number;
-	workFromHome(): string;
-	getCoffeeBreak(): string;
-	workDirectorTasks(): string;
-  }
+interface TeacherInterface {
+    workFromHome(): string;
+    getCoffeeBreak(): string;
+    workTeacherTasks(): string;
+}
+class Director implements DirectorInterface {
+    workFromHome(): string {
+        return "Working from home";
+    }
 
-  class Director implements Directors {
-	firstName: string;
-	lastName: string;
-	fullTimeEmployee: boolean;
-	location: string;
-	numberOfReports: number;
+    getCoffeeBreak(): string {
+        return "Getting a coffee break";
+    }
 
-	constructor(firstName: string, lastName: string, fullTimeEmployee: boolean, location: string, numberOfReports: number) {
-	  this.firstName = firstName;
-	  this.lastName = lastName;
-	  this.fullTimeEmployee = fullTimeEmployee;
-	  this.location = location;
-	  this.numberOfReports = numberOfReports;
-	}
+    workDirectorTasks(): string {
+        return "Getting to director tasks";
+    }
+}
 
-	workFromHome(): string {
-	  return 'Working from home';
-	}
+class Teacher implements TeacherInterface {
+    workFromHome(): string {
+        return "Cannot work from home";
+    }
 
-	getCoffeeBreak(): string {
-	  return 'Getting a coffee break';
-	}
+    getCoffeeBreak(): string {
+        return "Cannot have a break";
+    }
 
-	workDirectorTasks(): string {
-	  return 'Getting to director tasks';
-	}
-  }
+    workTeacherTasks(): string {
+        return "Getting to work";
+    }
+}
 
-  const director1: Directors = new Director('John', 'Doe', true, 'London', 17);
+function createEmployee(salary: number | string): Director | Teacher {
+    if (typeof salary === 'number' && salary < 500) {
+        return new Teacher();
+    } else {
+        return new Director();
+    }
+}
 
-  console.log(director1);
-  console.log(director1.workFromHome());
-  console.log(director1.getCoffeeBreak());
-  console.log(director1.workDirectorTasks());
+console.log(createEmployee(200));
+console.log(createEmployee(1000));
+console.log(createEmployee('$500'));
